@@ -54,3 +54,5 @@ for (let endpoint of allowedEndpoints) {
 		return this.send(`${endpoint}/${params}`);
 	};
 }
+
+module.exports = exports = Trakt;
