@@ -1,6 +1,7 @@
 'use strict';
 
 const request = require('request-promise');
+const _ = require('lodash');
 
 const allowedEndpoints = [
 	'episodes',
@@ -13,13 +14,20 @@ const allowedEndpoints = [
 ];
 
 class Trakt {
-	constructor(clientId) {
-		this.api = 'http://api.staging.trakt.tv/';
+	constructor(options) {
+		let defaults = {
+			clientId: '',
+			staging: false
+		};
+
+		options = _.defaults(options, defaults);
+
+		this.api = (options.staging ? 'http://api.staging.trakt.tv/' : 'https://api-v2launch.trakt.tv');
 		this.options = {
 			headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': 'node-trakt',
-				'trakt-api-key': clientId,
+				'trakt-api-key': options.clientId,
 				'trakt-api-version': '2'
 			},
 			json: true
