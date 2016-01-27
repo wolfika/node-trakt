@@ -1,0 +1,29 @@
+{
+  "name": "node-trakt",
+  "version": "0.0.0",
+  "description": "Trakt.tv API wrapper for Node.js",
+  "license": "MIT",
+  "repository": "wolfika/node-trakt",
+  "author": {
+    "name": "Máté Farkas",
+    "email": "farkas.mate38@gmail.com",
+    "url": "github.com/wolfika"
+  },
+  "engines": {
+    "node": ">=5.0.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.11.0",
+    "xo": "^0.12.1"
+  }
+}
