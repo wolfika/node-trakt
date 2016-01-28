@@ -4,7 +4,7 @@ const request = require('request-promise');
 const _ = require('lodash');
 
 /**
- * The list of endpoints that are currently supported by this wrapper
+ * The list of endpoints that are currently supported by the wrapper
  *
  * @type {string[]}
  */
@@ -24,14 +24,13 @@ const allowedEndpoints = [
 class Trakt {
 	/**
 	 * Initializes the trakt object.
-	 * Accepts an options parameter, which specifies the client ID
-	 * and if the consumer wants to interact with the staging API.
 	 *
-	 * @param options
+	 * @param {Object} options The options object
+	 * @param {string} options.clientId Trakt.tv client ID
+	 * @param {Boolean} [options.staging=false] Whether to use the staging API instead of production
 	 */
 	constructor(options) {
 		let defaults = {
-			clientId: '',
 			staging: false
 		};
 
@@ -50,21 +49,21 @@ class Trakt {
 	}
 
 	/**
-	 * Checks if the requested endpoint is supported by this wrapper
+	 * Checks if the requested endpoint is supported by the wrapper
 	 *
-	 * @param endpoint
-	 * @returns {boolean}
+	 * @param {string} endpoint The endpoint to check
+	 * @returns {Boolean}
 	 */
 	isAllowedEndpoint(endpoint) {
 		return allowedEndpoints.indexOf(endpoint.split('/')[0]) > -1;
 	}
 
 	/**
-	 * Returns the options object with the specified endpoint included
-	 * as an URI.
+	 * Places the specified endpoint's URI into the options object, and
+	 * returns the options object.
 	 *
-	 * @param endpoint
-	 * @returns {{headers: {Content-Type: string, User-Agent: string, trakt-api-key: string, trakt-api-version: string}, json: boolean}|*}
+	 * @param {string} endpoint The endpoint (and any parameters of it) to send to the API.
+	 * @returns {Object} options The options object from the trakt object
 	 */
 	getOptionsWithURI(endpoint) {
 		this.options.uri = this.api + endpoint;
@@ -76,7 +75,8 @@ class Trakt {
 	 * Send a request to the Trakt API.
 	 * Returns a promise.
 	 *
-	 * @param endpoint
+	 * @param {string} endpoint The endpoint (and any parameters of it) to send to the API.
+	 * @throws {Error} Endpoint not supported
 	 * @returns {Promise}
 	 */
 	send(endpoint) {
