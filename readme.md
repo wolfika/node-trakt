@@ -13,31 +13,23 @@ $ npm install --save node-trakt
 ## Usage
 
 ```js
-const nodeTrakt = require('node-trakt');
+const Trakt = require('node-trakt');
 
-nodeTrakt('unicorns');
-//=> 'unicorns & rainbows'
+const options = {
+	clientId: 'YOUR_CLIENT_ID'
+};
+
+const trakt = new Trakt(options);
+
+trakt
+	.movies('popular')
+	.then(movies => {
+		console.log(movies);
+	})
+	.catch(err => {
+		console.log(err);
+	});
 ```
-
-
-## API
-
-### nodeTrakt(input, [options])
-
-#### input
-
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-##### foo
-
-Type: `boolean`  
-Default: `false`
-
-Lorem ipsum.
 
 
 ## License
