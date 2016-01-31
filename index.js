@@ -30,24 +30,36 @@ class Trakt {
 	 * @param {Boolean} [options.staging=false] Whether to use the staging API instead of production
 	 */
 	constructor(options) {
+		let clientId;
+
 		let defaults = {
 			staging: false
 		};
 
-		options = _.defaults(options, defaults);
-
 		this.api = (options.staging ? 'http://api.staging.trakt.tv/' : 'https://api-v2launch.trakt.tv');
+
+		if (_.isObject(options) && options.hasOwnProperty('clientId')) {
+			clientId = options.clientId;
+		} else if (_.isString(options)) {
+			clientId = options;
+		}
+
 		this.options = {
+			clientId: clientId,
 			headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': 'node-trakt',
-				'trakt-api-key': options.clientId,
+				'trakt-api-key': clientId,
 				'trakt-api-version': '2'
 			},
 			json: true
 		};
 
-		this.options = _.merge({}, this.options, options);
+		this.options = _.defaultsDeep({}, this.options, defaults);
+
+		if (_.isObject(options)) {
+			this.options = _.merge({}, this.options, options);
+		}
 	}
 
 	/**
