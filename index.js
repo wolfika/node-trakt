@@ -44,6 +44,10 @@ class Trakt {
 			clientId = options;
 		}
 
+		if (clientId.length !== 64) {
+			throw new Error('Invalid clientId length (must be 64 characters).');
+		}
+
 		this.options = {
 			clientId: clientId,
 			headers: {
