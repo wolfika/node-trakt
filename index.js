@@ -46,6 +46,8 @@ class Trakt {
 			},
 			json: true
 		};
+
+		this.options = _.merge({}, this.options, options);
 	}
 
 	/**
