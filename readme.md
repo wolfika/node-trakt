@@ -68,6 +68,10 @@ Trakt main class
 #### new Trakt(options)
 Initializes the trakt object.
 
+**Throws**:
+
+- <code>Error</code> Invalid clientId length (must be 64 characters)
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
