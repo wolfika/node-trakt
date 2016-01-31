@@ -60,10 +60,6 @@ class Trakt {
 		};
 
 		this.options = _.defaultsDeep({}, this.options, defaults);
-
-		if (_.isObject(options)) {
-			this.options = _.merge({}, this.options, options);
-		}
 	}
 
 	/**
