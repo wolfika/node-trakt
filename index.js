@@ -28,6 +28,7 @@ class Trakt {
 	 * @param {Object} options The options object
 	 * @param {string} options.clientId Trakt.tv client ID
 	 * @param {Boolean} [options.staging=false] Whether to use the staging API instead of production
+	 * @throws {Error} Invalid clientId length (must be 64 characters)
 	 */
 	constructor(options) {
 		let clientId;
@@ -45,7 +46,7 @@ class Trakt {
 		}
 
 		if (clientId.length !== 64) {
-			throw new Error('Invalid clientId length (must be 64 characters).');
+			throw new Error('Invalid clientId length (must be 64 characters)');
 		}
 
 		this.options = {
