@@ -10,7 +10,8 @@
     "url": "github.com/wolfika"
   },
   "engines": {
-    "node": ">=5.0.0"
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
   },
   "scripts": {
     "test": "xo && ava"
@@ -19,7 +20,7 @@
     "index.js"
   ],
   "keywords": [
-    ""
+    "trakt"
   ],
   "dependencies": {
     "lodash": "^4.0.1",
